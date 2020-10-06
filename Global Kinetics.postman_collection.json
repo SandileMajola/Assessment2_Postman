@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "0055c410-6c77-4754-9c0d-e8b2284d835b",
+		"name": "Global Kinetics",
+		"description": "Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TC01 - Get Weather By City",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20d116fa-5727-4af6-a74a-6e5bb149477f",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify successful request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify country response is 'ZA'\", function () {\r",
+							"    pm.expect(jsonData.sys.country).to.eql(\"ZA\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify city response is 'Durban'\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Durban\")\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{ApiKey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "appid",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/data/2.5/weather?q={{City}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{City}}"
+						}
+					]
+				},
+				"description": "You can call by city name or city name"
+			},
+			"response": []
+		},
+		{
+			"name": "TC02 - Invalid API Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5b3c91a3-4b17-4782-9a79-6e591c2a67cf",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify Unauthorized request\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response body cod\", function () {\r",
+							"    pm.expect(jsonData.cod).to.eql(401)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response body message\", function () {\r",
+							"    pm.expect(jsonData.message).to.contain(\"Invalid API key.\")\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "1234",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "appid",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/data/2.5/weather?q={{City}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{City}}"
+						}
+					]
+				},
+				"description": "You can call by city name or city name"
+			},
+			"response": []
+		},
+		{
+			"name": "TC03 - Post Example",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e6a2d975-7f39-495d-90a9-c990be9503e5",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify successful request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify country response is 'ZA'\", function () {\r",
+							"    pm.expect(jsonData.sys.country).to.eql(\"ZA\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify city response is 'Durban'\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Durban\")\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{ApiKey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "appid",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/data/2.5/weather?q={{City}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{City}}"
+						}
+					]
+				},
+				"description": "You can call by city name or city name"
+			},
+			"response": []
+		},
+		{
+			"name": "TC03 - Put Example",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee0d2fe5-d706-4e1e-b43d-dd0866b79b80",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify successful request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify country response is 'ZA'\", function () {\r",
+							"    pm.expect(jsonData.sys.country).to.eql(\"ZA\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify city response is 'Durban'\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Durban\")\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{ApiKey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "appid",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/data/2.5/weather?q={{City}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{City}}"
+						}
+					]
+				},
+				"description": "You can call by city name or city name"
+			},
+			"response": []
+		},
+		{
+			"name": "TC03 - Delete Example",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87eb7b45-d3a6-4a4a-b65c-56e33a0a3b98",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify successful request\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify country response is 'ZA'\", function () {\r",
+							"    pm.expect(jsonData.sys.country).to.eql(\"ZA\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify city response is 'Durban'\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Durban\")\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{ApiKey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "appid",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/data/2.5/weather?q={{City}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{City}}"
+						}
+					]
+				},
+				"description": "You can call by city name or city name"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
